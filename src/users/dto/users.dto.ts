@@ -25,7 +25,7 @@ export class CreateUserDto{
     @MaxLength(50)
     sexo: string;
 
-    @IsBoolean()
-    @IsOptional()
-    active: boolean;
+   @IsBoolean()
+   @IsOptional()
+   active: boolean;
 }

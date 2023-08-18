@@ -18,7 +18,6 @@ export class User{
     @Column({type: 'varchar', length: '50'}) //Campos de una tabla
     sexo: string;
 
-    @Column({type: 'int8', default: true}) //Campos de una tabla
-    active: boolean;
-    
+   @Column({ type: 'boolean', default: true })
+   active: boolean;
 }

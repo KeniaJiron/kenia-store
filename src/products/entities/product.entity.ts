@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Product {
     @PrimaryGeneratedColumn({type: 'int4'}) // Este decorador hace referencia a una llave primaria
-    id: number;
+    id?: number;
 
     @Column({type: 'varchar', length: '100'}) //Campos de una tabla 
     name: string;
