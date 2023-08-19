@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Product {
@@ -16,4 +17,17 @@ export class Product {
 
     @Column({type: 'int8', nullable: false}) //Campos de una tabla
     stock: number; 
+
+    @Column({type:'int4', nullable: false}) //Campos de una tabla
+    user_id: number; 
+
+    //Relaciones 
+
+    @ManyToOne(() => User)
+    @JoinColumn({
+        name: 'user_id', // El campo que relaciona a mi tabla
+        referencedColumnName: "id", //Este es el id del usuario
+    })
+    autor: User;
+
 }

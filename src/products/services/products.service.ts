@@ -12,15 +12,25 @@ export class ProductsService {
         private readonly productRepo: Repository<Product>
     ){}
     //Crear un registro
-    async create(CreateProductDto: CreateProductDto) {
-        const product = this.productRepo.create(CreateProductDto);
+    async create(createProductDto: CreateProductDto) {
+        const product = this.productRepo.create(createProductDto);
         await this.productRepo.save(product);
 
         return product;
     }
     //Encontrar un registro
+    //findOne(id: number){
+      //  return this.productRepo.findOneBy({id});
+    // }
+
+    //Encontrar un registro con relaciones
     findOne(id: number){
-        return this.productRepo.findOneBy({id});
+        return this.productRepo.findOne({
+            where: {id},
+            relations:{
+                autor: true,
+            },
+        });
     }
     //Mostrar todos los registros 
     findAll() {
