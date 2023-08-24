@@ -29,6 +29,7 @@ export class ProductsService {
             where: {id},
             relations:{
                 autor: true,
+                autor2: true,
             },
         });
     }

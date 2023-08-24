@@ -1,20 +1,18 @@
-import {IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from "class-validator";
 
-export class CreateModeloDto{
+export class CreateCategoryDto{
     @IsNotEmpty()
     @IsNumber()
     id?: number;
     //Los decoradores en el dto se validan por la info que se agreguesea la que se conecta
 
-    @IsNumber()
-    @IsNotEmpty()
-    @MaxLength(100)
-    marca_id: number;
-
     @IsString()
     @IsNotEmpty()
-    @MaxLength(300)
-    name: string;
+    categoria: string;
+
+    @IsDate()
+    @IsOptional()
+    created_at: Date;
 
     @IsNumber()
     @IsNotEmpty()
