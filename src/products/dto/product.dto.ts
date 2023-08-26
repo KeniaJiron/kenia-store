@@ -5,7 +5,7 @@ export class CreateProductDto{
     @IsNotEmpty()
     @IsNumber()
     id?: number;
-    //Los decoradores en el dto se validan por la info que se agreguesea la que se conecta
+    //Los decoradores en el dto se validan por la info que se agregue sea la que se conecta
 
     @IsString()
     @IsNotEmpty()
