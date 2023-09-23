@@ -1,7 +1,8 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from '../../users/entities/user.entity';
 import { Category } from "./category.entity";
 import { Proveedor } from "./proveedor.entity";
+import { ProductImage } from "./product-image.entity";
 
 @Entity()
 export class Product {
@@ -11,7 +12,7 @@ export class Product {
     @Column({type: 'varchar', length: '100'}) //Campos de una tabla 
     name: string;
 
-    @Column({type: 'varchar', length: '300', nullable: false }) //Campos de una tabla
+    @Column({type: 'varchar', nullable: false}) //Campos de una tabla
     description: string;
 
     @Column({type: 'int4', nullable: false}) //Campos de una tabla
@@ -23,7 +24,7 @@ export class Product {
     @Column({type:'int4', nullable: false}) //Campos de una tabla
     user_id: number; 
 
-    @Column({type: 'varchar', nullable: true}) //Campos de una tabla
+@Column({type: 'varchar', nullable: true}) //Campos de una tabla?
     filename: String;
 
     @CreateDateColumn({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})//Campos de una tabla
@@ -57,6 +58,9 @@ export class Product {
         referencedColumnName: "id", //Este es el id del usuario
     })
     proveedor: Proveedor;
-    
-
+   //Un producto puede tener muchas imagenes 
+@OneToMany(()=> ProductImage, (productcImage)=> productcImage.product,{
+    cascade: true,
+})
+images?: ProductImage[];
 }
