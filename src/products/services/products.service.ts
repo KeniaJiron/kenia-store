@@ -72,7 +72,7 @@ export class ProductsService {
     }
     //Actualizar un registro o producto
     //async update (id: number, cambios: CreateProductDto){
-        //const oldProduct = await this.findOne(id);
+        //const oldProduct = await this.findOne(id); 
        // const updateProduct = await this.productRepo.merge(oldProduct, cambios);
        // return this.productRepo.save(updateProduct);
   //  }

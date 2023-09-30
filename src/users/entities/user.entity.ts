@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { UserImage } from './user-image.entity';
 
 
 @Entity()
@@ -20,4 +21,11 @@ export class User{
 
    @Column({ type: 'boolean', default: true })
    active: boolean;
+
+      //Un usuario puede tener muchas imagenes
+      autor: User; 
+@OneToMany(()=> UserImage, (userImage)=> userImage.user,{
+    cascade: true,
+})
+images?: UserImage[];
 }

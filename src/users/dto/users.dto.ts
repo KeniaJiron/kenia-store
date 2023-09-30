@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, MaxLength, IsBoolean, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, MaxLength, IsBoolean, IsOptional, IsArray } from 'class-validator';
 
 export class CreateUserDto{
 
@@ -28,4 +28,9 @@ export class CreateUserDto{
    @IsBoolean()
    @IsOptional()
    active: boolean;
+
+   @IsArray({ each: true })
+    @IsString()
+    @IsOptional()
+    images?: string[];
 }
