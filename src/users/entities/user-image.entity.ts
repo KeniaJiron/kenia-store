@@ -11,7 +11,6 @@ export class UserImage {
     url: string;
 
     //Relaciones
-    //Muchas imagenes seran de un usuario
     @ManyToOne(() => User, (user) => user.images, {
         onDelete: 'CASCADE',
     })

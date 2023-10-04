@@ -10,7 +10,6 @@ export class ProductImage {
     url: string;
 
     //Relaciones
-    //Muchas imagenes seran de un producto 
     @ManyToOne(() => Product, (product) => product.images, {
         onDelete: 'CASCADE',
     })

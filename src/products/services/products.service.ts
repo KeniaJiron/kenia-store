@@ -24,7 +24,6 @@ export class ProductsService {
         return product;
     }*/
 
-    //Crear un producto y agregar una imagen
     async create(productDto: CreateProductDto) {
         const { images = [], ...detailsProducts } = productDto;
 
@@ -39,12 +38,6 @@ export class ProductsService {
         return product;
     }
 
-    //Encontrar un registro
-    //findOne(id: number){
-      //  return this.productRepo.findOneBy({id});
-    // }
-
-    //Encontrar un registro con relaciones
     findOne(id: number){
         return this.productRepo.findOne({
             where: {id},
@@ -55,7 +48,7 @@ export class ProductsService {
             },
         });
     }
-    //Mostrar todos los registros 
+    
     findAll() {
         return this.productRepo.find({
             order: { id: 'ASC'},
@@ -77,12 +70,12 @@ export class ProductsService {
        // return this.productRepo.save(updateProduct);
   //  }
 
-  //Actualizar un producto con imagenes
+
   async update(id: number, cambios: CreateProductDto) {
     const { images, ...updateAll } = cambios;
     const product = await this.productRepo.preload({
     id: id,
-    ...updateAll,  // Para esparciar todos los datos del ProductDto
+    ...updateAll,  
     });
 
     //Empezamos a correr el queryRunner
@@ -91,10 +84,10 @@ export class ProductsService {
     await queryRunner.startTransaction();
 
     if(images) {
-        //Si images no está vacio, vamos a borrar las imagines existentes 
+        
         await queryRunner.manager.delete(ProductImage, {product: {id}});
 
-        //Creamos nuevas imagenes de producto
+        
         product.images = images.map((image) =>
             this.productImageRepo.create({ url: image}),
         );
@@ -102,10 +95,10 @@ export class ProductsService {
         product.images = await this.productImageRepo.findBy({ product: {id} });
     }
 
-    //Guardamos en producto
+
     await queryRunner.manager.save(product);
 
-    //Se finaliza la transaccion y liberamos el queryRunner
+    
     await queryRunner.commitTransaction();
     await queryRunner.release();
 

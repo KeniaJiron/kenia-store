@@ -5,7 +5,7 @@ export class CreateUserDto{
     @IsNotEmpty()
     @IsNumber()
     id: number;
-    //Los decoradores en el dto se validan por la info que se agregue sea la que se conecta
+
     @IsString()
     @IsNotEmpty()
     @MaxLength(100)
